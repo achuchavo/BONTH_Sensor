@@ -22,7 +22,7 @@ object fmthclient: Tfmthclient
     Top = 0
     Width = 419
     Height = 703
-    ActivePage = page_login
+    ActivePage = page_home
     Align = alClient
     TabOrder = 0
     object page_login: TTabSheet

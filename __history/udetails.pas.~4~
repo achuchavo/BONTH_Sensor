@@ -1,0 +1,42 @@
+unit udetails;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DBGridEhGrouping, ToolCtrlsEh,
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  Tfmdetail = class(TForm)
+    Panel2: TPanel;
+    fakers: TPanel;
+    Panel8: TPanel;
+    btn_excel: TButton;
+    Panel9: TPanel;
+    Label4: TLabel;
+    Label5: TLabel;
+    date1: TDateTimePicker;
+    date2: TDateTimePicker;
+    btn_search: TButton;
+    thG: TDBGridEh;
+    Panel3: TPanel;
+    pnl_title: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+    var
+       thename : String;
+  end;
+
+var
+  fmdetail: Tfmdetail;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -118,11 +118,11 @@ begin
       lbl_hum := fmManager.FindComponent('lbl_hum'+twodigit) as TLabel;
       lbl_temp := fmManager.FindComponent('lbl_temp'+twodigit) as TLabel;
       lbl_press := fmManager.FindComponent('lbl_press'+twodigit) as TLabel;
-       Synchronize(procedure
+     {  Synchronize(procedure
       begin
         fmmanager.mem_info.Lines.Add(theInterval.ToString);
       end
-     );
+     ); }
        if isConnected then
        begin
         aquery := TMyQuery.Create(nil);

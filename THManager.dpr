@@ -5,7 +5,8 @@ uses
   uManager in 'uManager.pas' {fmManager},
   uthcodebase in 'uthcodebase.pas',
   u_module in 'u_module.pas' {d_module: TDataModule},
-  uUpdateUI in 'uUpdateUI.pas';
+  uUpdateUI in 'uUpdateUI.pas',
+  udetails in 'udetails.pas' {fmdetail};
 
 {$R *.res}
 

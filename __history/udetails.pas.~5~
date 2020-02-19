@@ -1,0 +1,57 @@
+unit udetails;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DBGridEhGrouping, ToolCtrlsEh,
+  u_module,
+  DBGridEhToolCtrls, DynVarsEh, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh,
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB, DBAccess, MyAccess, MemDS;
+
+type
+  Tfmdetail = class(TForm)
+    Panel2: TPanel;
+    fakers: TPanel;
+    Panel8: TPanel;
+    btn_excel: TButton;
+    Panel9: TPanel;
+    Label4: TLabel;
+    Label5: TLabel;
+    date1: TDateTimePicker;
+    date2: TDateTimePicker;
+    btn_search: TButton;
+    thG: TDBGridEh;
+    Panel3: TPanel;
+    pnl_title: TPanel;
+    MyQuery1: TMyQuery;
+    MyConnection1: TMyConnection;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+    var
+       thename : String;
+       thQ : Tmyquery;
+       thD : Tdatasource;
+  end;
+
+var
+  fmdetail: Tfmdetail;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfmdetail.FormShow(Sender: TObject);
+begin
+     d_module._Ip := 'database.bonsys.co.kr';
+     d_module._Port :=33061;
+     d_module._Username :='chavo';
+     d_module._Password :='bonsys09';
+     d_module._db :='bonsys_intranet';
+end;
+
+end.

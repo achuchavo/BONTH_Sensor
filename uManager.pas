@@ -108,7 +108,7 @@ var
 
 implementation
   uses
-    uthcodebase;
+    uthcodebase,udetails;
 
 {$R *.dfm}
 
@@ -116,7 +116,6 @@ procedure TfmManager.btn_create_componentsClick(Sender: TObject);
 begin
     btn_create_components.Enabled := false;
     btn_stop.Enabled := true;
-    btn_applyInterval.Enabled := true;
     clear_components;
     set_profiles;
 end;
@@ -134,6 +133,7 @@ begin
        if clear_components then
      begin
         components_made := false;
+        terminate_UpdateUI;
      end
      else
      begin
@@ -521,7 +521,6 @@ begin
      d_module._db :='bonsys_intranet';
         btn_create_components.Enabled := true;
         btn_stop.Enabled := false;
-        btn_applyInterval.Enabled := false;
 end;
 
 procedure TfmManager.open_details(Sender: TObject);
@@ -530,11 +529,16 @@ var
   str_aname : String;
 begin
    str_aname := 'edt_name' + AnsiRightStr(TButton(Sender).name, 2);
-   mem_info.Lines.Add(str_aname);
+   //mem_info.Lines.Add(str_aname);
    edt_aname := fmmanager.FindComponent(str_aname) as Tedit;
    if Assigned(edt_aname) then
    begin
-     mem_info.Lines.Add(edt_aname.Text + ' CLICKED!');
+    // mem_info.Lines.Add(edt_aname.Text + ' CLICKED!');
+     fmdetail := Tfmdetail.Create(self);
+     fmdetail.pnl_title.Caption := ' ¿Ã∏ß : ' + edt_aname.Text;
+     fmdetail.thename := edt_aname.Text;
+     fmdetail.btn_searchClick(fmdetail.btn_search);
+     fmdetail.Show;
    end
    else
    begin
