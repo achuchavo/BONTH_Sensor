@@ -1,0 +1,15 @@
+object d_module: Td_module
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+  object myConn: TMyConnection
+    Options.UseUnicode = True
+    Left = 152
+    Top = 80
+  end
+  object MyQuery1: TMyQuery
+    Connection = myConn
+    Left = 112
+    Top = 64
+  end
+end

@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{826EE5B1-426C-4667-A853-42B0B63708D7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="BONTH.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="THClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="THManager.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BONTH">
+        <MSBuild Projects="BONTH.dproj"/>
+    </Target>
+    <Target Name="BONTH:Clean">
+        <MSBuild Projects="BONTH.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BONTH:Make">
+        <MSBuild Projects="BONTH.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="THClient">
+        <MSBuild Projects="THClient.dproj"/>
+    </Target>
+    <Target Name="THClient:Clean">
+        <MSBuild Projects="THClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="THClient:Make">
+        <MSBuild Projects="THClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="THManager">
+        <MSBuild Projects="THManager.dproj"/>
+    </Target>
+    <Target Name="THManager:Clean">
+        <MSBuild Projects="THManager.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="THManager:Make">
+        <MSBuild Projects="THManager.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BONTH;THClient;THManager"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BONTH:Clean;THClient:Clean;THManager:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BONTH:Make;THClient:Make;THManager:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

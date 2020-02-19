@@ -1,0 +1,15 @@
+program THManager;
+
+uses
+  Vcl.Forms,
+  uManager in 'uManager.pas' {fmManager},
+  uthcodebase in 'uthcodebase.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmManager, fmManager);
+  Application.Run;
+end.

@@ -1,0 +1,14 @@
+program THClient;
+
+uses
+  Vcl.Forms,
+  uthclient in 'uthclient.pas' {fmthclient};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfmthclient, fmthclient);
+  Application.Run;
+end.

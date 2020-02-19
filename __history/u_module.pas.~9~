@@ -1,0 +1,92 @@
+unit u_module;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, MemDS, DBAccess, MyAccess,
+  //
+    System.JSON,
+  //
+  Winsock, IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
+
+type
+  Td_module = class(TDataModule)
+    myConn: TMyConnection;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Function GetIPAddress():String;
+    Function GetPublicIPAddress():String;
+  end;
+
+var
+  d_module: Td_module;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ Td_module }
+
+function Td_module.GetIPAddress: String;
+type
+  pu_long = ^u_long;
+var
+  varTWSAData : TWSAData;
+  varPHostEnt : PHostEnt;
+  varTInAddr : TInAddr;
+  namebuf : Array[0..255] of AnsiChar;
+begin
+  If WSAStartup($101,varTWSAData) <> 0 Then
+  Result := 'No. IP Address'
+  Else Begin
+    gethostname(namebuf,sizeof(namebuf));
+    varPHostEnt := gethostbyname(namebuf);
+    varTInAddr.S_addr := u_long(pu_long(varPHostEnt^.h_addr_list^)^);
+    Result := inet_ntoa(varTInAddr);
+  End;
+  WSACleanup;
+end;
+
+function Td_module.GetPublicIPAddress: String;
+var
+  LIdHTTP: TIdHTTP;
+  resp: TMemoryStream;
+  lReader: TStringReader;
+  webdata : string;
+  obj: TJSONObject;
+  myip : String;
+begin
+     result := '';
+    try
+         LIdHTTP:= TIdHTTP.Create(nil);
+         LIdHTTP.request.useragent := 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; MAAU)';
+        // resp := TMemoryStream.Create;
+                    try
+                      lReader := TStringReader.Create(LIdHTTP.Get('http://ipinfo.io/json'));
+                      webdata := lreader.ReadToEnd;
+                    finally
+                      LIdHTTP.Free;
+                    end;
+         obj := TJsonobject.create;
+         obj := TJSONObject.ParseJSONValue(webdata) as TJSONObject;
+         try
+             myip := obj.Values['ip'].Value;
+             result := myip;
+         finally
+           obj.free;
+         end;
+    except on e : exception do
+      begin
+          result := '';
+         // showmessage(e.message);
+      end;
+
+    end;
+
+end;
+
+end.

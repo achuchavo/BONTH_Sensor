@@ -1,0 +1,16 @@
+program BONTH;
+
+uses
+  Vcl.Forms,
+  ubonth in 'ubonth.pas' {fmbonth},
+  u_module in 'u_module.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfmbonth, fmbonth);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

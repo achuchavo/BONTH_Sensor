@@ -1,0 +1,5 @@
+object d_module: Td_module
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+end

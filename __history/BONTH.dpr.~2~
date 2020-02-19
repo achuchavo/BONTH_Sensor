@@ -1,0 +1,14 @@
+program BONTH;
+
+uses
+  Vcl.Forms,
+  ubonth in 'ubonth.pas' {fmbonth};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfmbonth, fmbonth);
+  Application.Run;
+end.
